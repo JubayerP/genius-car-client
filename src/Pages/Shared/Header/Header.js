@@ -1,17 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../../assets/logo.svg';
-import { BsHandbag } from 'react-icons/bs';
-import { IoIosSearch } from 'react-icons/io';
+import logo from "../../../assets/logo.svg";
+import { BsHandbag } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
 
 const Header = () => {
-    const menuItems = <>
-        <li className='hover:text-[#FF3811]'><Link to='/'>Home</Link></li>
-        <li className='hover:text-[#FF3811]'><Link to='/about'>About</Link></li>
-        <li className='hover:text-[#FF3811]'><Link to='/services'>Services</Link></li>
-        <li className='hover:text-[#FF3811]'><Link to='/blog'>Blog</Link></li>
-        <li className='hover:text-[#FF3811]'><Link to='/contact'>Contact</Link></li>
+  const menuItems = (
+    <>
+      <li className="hover:text-[#FF3811]">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="hover:text-[#FF3811]">
+        <Link to="/about">About</Link>
+      </li>
+      <li className="hover:text-[#FF3811]">
+        <Link to="/services">Services</Link>
+      </li>
+      <li className="hover:text-[#FF3811]">
+        <Link to="/blog">Blog</Link>
+      </li>
+      <li className="hover:text-[#FF3811]">
+        <Link to="/contact">Contact</Link>
+      </li>
     </>
+  );
   return (
     <div className="navbar bg-base-100 h-86 mb-12">
       <div className="navbar-start">
@@ -37,19 +49,27 @@ const Header = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuItems}
+            <div className="flex items-center pl-4 space-x-2">
+              <BsHandbag size={24} className="" />
+              <IoIosSearch size={24} className="" />
+            </div>
           </ul>
         </div>
-        <Link to='/' className=""><img className="w-20" src={logo} alt="" /></Link>
+        <Link to="/" className="">
+          <img className="w-20" src={logo} alt="" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="md:space-x-6 menu-horizontal px-1 font-semibold">
           {menuItems}
         </ul>
       </div>
-          <div className="navbar-end space-x-4">
-              <BsHandbag size={24}/>
-              <IoIosSearch size={24}/>
-        <button className="btn btn-outline rounded-sm text-[#FF3811] hover:bg-[#FF3811] hover:text-white hover:border-white no-animation">Appointment</button>
+      <div className="navbar-end space-x-4">
+        <BsHandbag size={24} className="hidden lg:block" />
+        <IoIosSearch size={24} className="hidden lg:block" />
+        <button className="btn btn-outline rounded-sm text-[#FF3811] hover:bg-[#FF3811] hover:text-white hover:border-white no-animation">
+          Appointment
+        </button>
       </div>
     </div>
   );
