@@ -100,9 +100,6 @@ const SignUp = () => {
         <div className="text-center lg:text-left">
           <img className="w-3/4" src={img} alt="loginImg" />
         </div>
-        {loading ? (
-          <Spinner />
-        ) : (
           <div className="card w-full max-w-md bg-base-100 border rounded-lg">
             <h1 className="text-4xl font-semibold text-center text-[#444] mt-10">
               Sign Up
@@ -181,7 +178,6 @@ const SignUp = () => {
               </p>
             </div>
           </div>
-        )}
       </div>
     </div>
   );

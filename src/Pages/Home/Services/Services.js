@@ -5,7 +5,7 @@ const Services = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/ProgrammingHero1/genius-car-client-module-69/main/public/services.json"
+      "http://localhost:5000/services"
     )
       .then((res) => res.json())
       .then((data) => setServices(data));

@@ -5,7 +5,6 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { toast } from "react-hot-toast";
-import Spinner from "../Shared/Spinner/Spinner";
 
 const Login = () => {
   const { signIn, loading, setLoading } = useContext(AuthContext);
@@ -84,9 +83,6 @@ const Login = () => {
         <div className="text-center lg:text-left">
           <img className="w-3/4" src={img} alt="loginImg" />
         </div>
-        {loading ? (
-          <Spinner />
-        ) : (
           <div className="card w-full max-w-md bg-base-100 border rounded-lg">
             <h1 className="text-4xl font-semibold text-center text-[#444] mt-10">
               Login
@@ -153,7 +149,6 @@ const Login = () => {
               </p>
             </div>
           </div>
-        )}
       </div>
     </div>
   );
