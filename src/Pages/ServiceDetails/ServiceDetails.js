@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import details from '../../assets/images/details/details.png';
 import './ServiceDetails.css';
 import logo from '../../assets/logo.svg'
@@ -7,7 +7,7 @@ import logo from '../../assets/logo.svg'
 const ServiceDetails = () => {
     const service = useLoaderData();
     console.log(service);
-    const { title, img, description, facility, price,  } = service;
+    const { title, img, description, facility, price,_id  } = service;
     return (
         <div>
             <div className='relative mt-12'>
@@ -52,7 +52,9 @@ const ServiceDetails = () => {
                     </div>
                     <div>
                         <h3 className='text-4xl font-bold text-[#151515] my-7'>Price ${price}</h3>
+                        <Link to={`/checkout/${_id}`}>
                         <button className='btn rounded no-animation bg-[#ff3811] hover:bg-[#ff3811] border-0 btn-wide capitalize'>Proceed Checkout</button>
+                        </Link>
                     </div>
                 </div>
             </div>
