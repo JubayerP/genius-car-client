@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { BsHandbag } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const {user, logOut} = useContext(AuthContext);
   const menuItems = (
     <>
       <li className="hover:text-[#FF3811]">
@@ -16,15 +18,19 @@ const Header = () => {
       <li className="hover:text-[#FF3811]">
         <Link to="/services">Services</Link>
       </li>
-      <li className="hover:text-[#FF3811]">
+      {user ? <>
+        <li className="hover:text-[#FF3811]">
         <Link to="/orders">My Orders</Link>
       </li>
       <li className="hover:text-[#FF3811]">
-        <Link to="/contact">Contact</Link>
+        <button onClick={logOut} className="btn btn-ghost btn-sm no-animation rounded">Sign Out</button>
       </li>
-      <li className="hover:text-[#FF3811]">
-        <Link to="/login">Signin</Link>
+      </>
+        :
+        <li className="hover:text-[#FF3811]">
+        <Link to='/login'>Sign In</Link>
       </li>
+    }
     </>
   );
   return (
