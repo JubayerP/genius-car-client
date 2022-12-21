@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import img from "../../assets/images/login/login.svg";
-import { TiSocialFacebook, TiSocialLinkedin } from "react-icons/ti";
-import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { toast } from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { TiSocialFacebook, TiSocialLinkedin } from "react-icons/ti";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import img from "../../assets/images/login/login.svg";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { signIn, loading, setLoading } = useContext(AuthContext);
@@ -16,6 +16,12 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || '/';
+
   const handleLogin = (e) => {
     e.preventDefault();
     signIn(userInfo.email, userInfo.password)
@@ -32,6 +38,23 @@ const Login = () => {
             color: "#fff",
           },
         });
+        const user = result.user;
+        const currentUser = {
+          email: user.email
+        }
+        fetch('https://genius-car-server-mu-drab.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            localStorage.setItem('genius-token', data.token)
+            navigate(from , {replace: true})
+        })
       })
       .catch((e) => {
         toast.error(e.message, {

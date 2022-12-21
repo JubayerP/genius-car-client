@@ -1,15 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [isAsc, setIsAsc] = useState(true);
+  const [searchText, setSearchText] = useState('');
+  console.log(searchText);
+  const search = useRef();
   useEffect(() => {
     fetch(
-      "http://localhost:5000/services"
+      `https://genius-car-server-mu-drab.vercel.app/services?search=${searchText}&order=${isAsc ? 'asc' : 'dsc'}`
     )
       .then((res) => res.json())
       .then((data) => setServices(data));
-  }, []);
+  }, [searchText, isAsc]);
+
+  const handleSearch = () => {
+  setSearchText(search.current.value)
+}
+
   return (
     <div className="mb-32">
       <div className="text-center w-1/2 mx-auto mb-12">
@@ -22,6 +31,11 @@ const Services = () => {
           humour, or randomised words which don't look even slightly believable.
         </span>
       </div>
+
+      <button onClick={() => setIsAsc(!isAsc)} className="btn">{isAsc ? 'Show Dsc' : 'Show Asc'}</button> 
+      
+      <input ref={search} type="text" className="input input-bordered focus:outline-none input-sm" />
+      <button onClick={handleSearch} className="btn btn-sm">Search</button>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {services.map((service) => (

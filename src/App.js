@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Toaster />
+      {/* <ScrollToTop /> */}
       <RouterProvider router={router}/>
     </div>
   );
